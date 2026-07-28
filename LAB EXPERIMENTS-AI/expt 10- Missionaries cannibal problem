@@ -1,0 +1,20 @@
+from collections import deque
+
+visited = set()
+
+queue = deque()
+queue.append((3,3,1))
+
+while queue:
+    state = queue.popleft()
+
+    if state in visited:
+        continue
+
+    visited.add(state)
+
+    print(state)
+
+    if state==(0,0,0):
+        print("Goal Reached")
+        break
