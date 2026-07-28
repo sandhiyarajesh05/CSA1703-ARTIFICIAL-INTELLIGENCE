@@ -1,0 +1,16 @@
+rooms = {
+    'A':'Dirty',
+    'B':'Clean'
+}
+
+for room in rooms:
+    print(room,":",rooms[room])
+
+    if rooms[room]=='Dirty':
+        print("Cleaning",room)
+        rooms[room]='Clean'
+
+print("\nFinal State")
+
+for room in rooms:
+    print(room,":",rooms[room])
