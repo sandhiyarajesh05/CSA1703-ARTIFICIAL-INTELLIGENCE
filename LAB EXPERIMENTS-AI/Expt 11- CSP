@@ -1,0 +1,44 @@
+# Map Coloring using CSP (Backtracking)
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'C', 'D'],
+    'C': ['A', 'B', 'D'],
+    'D': ['B', 'C']
+}
+
+colors = ['Red', 'Green', 'Blue']
+
+assignment = {}
+
+def is_safe(region, color):
+    for neighbor in graph[region]:
+        if neighbor in assignment and assignment[neighbor] == color:
+            return False
+    return True
+
+def solve(regions):
+    if len(assignment) == len(regions):
+        return True
+
+    region = regions[len(assignment)]
+
+    for color in colors:
+        if is_safe(region, color):
+            assignment[region] = color
+
+            if solve(regions):
+                return True
+
+            del assignment[region]
+
+    return False
+
+regions = list(graph.keys())
+
+if solve(regions):
+    print("Color Assignment:")
+    for region in regions:
+        print(region, ":", assignment[region])
+else:
+    print("No solution exists.")
