@@ -1,0 +1,17 @@
+% Student - Teacher - Subject Code Database
+
+student_teacher(sandhiya, anitha, cs101).
+student_teacher(ravi, kumar, cs102).
+student_teacher(priya, lakshmi, cs103).
+
+:- initialization(main).
+
+main :-
+    student_teacher(sandhiya, Teacher, SubjectCode),
+    write('Teacher = '),
+    write(Teacher),
+    nl,
+    write('Subject Code = '),
+    write(SubjectCode),
+    nl,
+    halt.
