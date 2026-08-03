@@ -1,0 +1,28 @@
+from sklearn import tree
+
+# Training data
+X = [
+    [25, 50000],
+    [35, 65000],
+    [45, 80000],
+    [20, 30000],
+    [30, 45000]
+]
+
+# Class labels
+Y = ["No", "Yes", "Yes", "No", "No"]
+
+# Create Decision Tree Classifier
+clf = tree.DecisionTreeClassifier()
+
+# Train the model
+clf = clf.fit(X, Y)
+
+# Read test data
+age = int(input("Enter Age: "))
+salary = int(input("Enter Salary: "))
+
+# Predict
+prediction = clf.predict([[age, salary]])
+
+print("Predicted Class:", prediction[0])
