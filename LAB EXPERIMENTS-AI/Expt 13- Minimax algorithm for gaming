@@ -1,0 +1,29 @@
+import math
+
+# Terminal node values
+scores = [3, 5, 2, 9, 12, 5, 23, 23]
+
+# Minimax Function
+def minimax(depth, nodeIndex, isMax, scores, maxDepth):
+
+    # Base case
+    if depth == maxDepth:
+        return scores[nodeIndex]
+
+    if isMax:
+        return max(
+            minimax(depth + 1, nodeIndex * 2, False, scores, maxDepth),
+            minimax(depth + 1, nodeIndex * 2 + 1, False, scores, maxDepth)
+        )
+    else:
+        return min(
+            minimax(depth + 1, nodeIndex * 2, True, scores, maxDepth),
+            minimax(depth + 1, nodeIndex * 2 + 1, True, scores, maxDepth)
+        )
+
+# Driver Code
+treeDepth = int(math.log2(len(scores)))
+
+result = minimax(0, 0, True, scores, treeDepth)
+
+print("Optimal Value:", result)
