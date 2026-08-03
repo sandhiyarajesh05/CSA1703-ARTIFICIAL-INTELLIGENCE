@@ -1,0 +1,58 @@
+import math
+
+# Terminal node values
+scores = [3, 5, 6, 9, 1, 2, 0, -1]
+
+# Alpha-Beta Pruning Function
+def alphabeta(depth, nodeIndex, maximizingPlayer, scores, alpha, beta, maxDepth):
+
+    # Base case
+    if depth == maxDepth:
+        return scores[nodeIndex]
+
+    if maximizingPlayer:
+        value = -math.inf
+
+        for i in range(2):
+            value = max(value,
+                        alphabeta(depth + 1,
+                                  nodeIndex * 2 + i,
+                                  False,
+                                  scores,
+                                  alpha,
+                                  beta,
+                                  maxDepth))
+
+            alpha = max(alpha, value)
+
+            if alpha >= beta:
+                break
+
+        return value
+
+    else:
+        value = math.inf
+
+        for i in range(2):
+            value = min(value,
+                        alphabeta(depth + 1,
+                                  nodeIndex * 2 + i,
+                                  True,
+                                  scores,
+                                  alpha,
+                                  beta,
+                                  maxDepth))
+
+            beta = min(beta, value)
+
+            if alpha >= beta:
+                break
+
+        return value
+
+# Driver Code
+treeDepth = int(math.log2(len(scores)))
+
+result = alphabeta(0, 0, True, scores, -math.inf, math.inf, treeDepth)
+
+print("Optimal Value:", result)
